@@ -13,6 +13,8 @@ env/
 # Environment variables
 .env
 .env.local
+config.sh
+config.sh.save
 
 # Excel files (may contain sensitive data)
 *.xlsx
