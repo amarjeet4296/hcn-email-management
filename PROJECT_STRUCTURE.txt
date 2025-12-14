@@ -1,0 +1,243 @@
+HCN Management System - Project Structure
+==========================================
+
+hcn/
+│
+├── Backend Files (Python)
+│   ├── backend_api.py                 # FastAPI REST API server
+│   ├── sending_update.py              # Email processing & HCN management
+│   ├── receive_email.py               # Email inbox checker
+│   ├── requirements.txt               # Python dependencies
+│   └── .env                           # Environment variables (optional)
+│
+├── Data Files
+│   ├── HCN1.xlsx                      # Main Excel database
+│   ├── hotel_contacts*.json           # Hotel contact information
+│   └── email_send_log.xlsx            # Email activity log
+│
+├── Frontend Application (React + TypeScript)
+│   └── frontend/
+│       │
+│       ├── Configuration Files
+│       │   ├── package.json           # Node dependencies & scripts
+│       │   ├── vite.config.ts         # Vite build configuration
+│       │   ├── tsconfig.json          # TypeScript settings
+│       │   ├── tsconfig.node.json     # TypeScript node config
+│       │   ├── tailwind.config.js     # Tailwind CSS configuration
+│       │   ├── postcss.config.js      # PostCSS configuration
+│       │   ├── .eslintrc.cjs          # ESLint rules
+│       │   ├── .gitignore             # Git ignore patterns
+│       │   └── .env.example           # Environment template
+│       │
+│       ├── Source Code
+│       │   └── src/
+│       │       │
+│       │       ├── Entry Points
+│       │       │   ├── main.tsx               # Application entry point
+│       │       │   ├── App.tsx                # Root component
+│       │       │   ├── index.css              # Global styles
+│       │       │   └── vite-env.d.ts          # Vite types
+│       │       │
+│       │       ├── Components (Reusable UI)
+│       │       │   └── components/
+│       │       │       ├── Header.tsx         # Navigation header
+│       │       │       ├── StatCard.tsx       # Statistics card
+│       │       │       ├── BookingTable.tsx   # Bookings table
+│       │       │       └── ProcessButton.tsx  # Email process button
+│       │       │
+│       │       ├── Pages (Routes)
+│       │       │   └── pages/
+│       │       │       ├── Dashboard.tsx      # Main dashboard (/))
+│       │       │       ├── AllBookings.tsx    # All bookings (/bookings)
+│       │       │       ├── PendingBookings.tsx # Pending (/pending)
+│       │       │       ├── CriticalBookings.tsx # Critical (/critical)
+│       │       │       └── Settings.tsx       # Settings (/settings)
+│       │       │
+│       │       ├── API Layer
+│       │       │   └── services/
+│       │       │       └── api.ts             # Axios client & endpoints
+│       │       │
+│       │       ├── State Management
+│       │       │   └── hooks/
+│       │       │       └── useBookings.ts     # React Query hooks
+│       │       │
+│       │       ├── Type Definitions
+│       │       │   └── types/
+│       │       │       └── index.ts           # TypeScript interfaces
+│       │       │
+│       │       └── Utilities
+│       │           └── utils/
+│       │               └── helpers.ts         # Helper functions
+│       │
+│       ├── Public Assets
+│       │   └── public/                        # Static files
+│       │
+│       ├── Build Output
+│       │   └── dist/                          # Production build (generated)
+│       │
+│       └── Documentation
+│           └── README.md                      # Frontend documentation
+│
+├── Documentation
+│   ├── PROJECT_OVERVIEW.md           # This project overview
+│   ├── PROJECT_STRUCTURE.txt         # This file
+│   ├── FULLSTACK_SETUP.md           # Complete setup guide
+│   ├── QUICK_START_FULLSTACK.md     # Quick start guide
+│   └── README.md                    # Main readme
+│
+├── Scripts
+│   ├── start.sh                     # Startup script (both servers)
+│   └── config.sh                    # Configuration script
+│
+└── Git Configuration
+    └── .gitignore                   # Git ignore patterns
+
+
+Key Directories Explained
+==========================
+
+Backend (Python)
+----------------
+- backend_api.py        : FastAPI server with REST endpoints
+- sending_update.py     : Core email processing logic
+- receive_email.py      : Email inbox monitoring
+- HCN1.xlsx            : Excel database with booking data
+
+Frontend (React)
+----------------
+Components:
+  - Header.tsx          : Top navigation bar
+  - StatCard.tsx        : Dashboard statistics cards
+  - BookingTable.tsx    : Reusable table for displaying bookings
+  - ProcessButton.tsx   : Button to trigger email workflow
+
+Pages:
+  - Dashboard.tsx       : Overview with statistics
+  - AllBookings.tsx     : All bookings list
+  - PendingBookings.tsx : Bookings awaiting HCN
+  - CriticalBookings.tsx: Bookings with issues
+  - Settings.tsx        : System configuration view
+
+Services:
+  - api.ts             : Axios HTTP client for backend communication
+
+Hooks:
+  - useBookings.ts     : React Query hooks for data fetching
+
+Types:
+  - index.ts           : TypeScript type definitions
+
+
+Technology Stack
+================
+
+Backend:
+  - Python 3.8+
+  - FastAPI (REST API)
+  - Pandas (Excel processing)
+  - OpenAI (Email analysis)
+  - Gmail SMTP/IMAP
+
+Frontend:
+  - React 18
+  - TypeScript
+  - Vite (Build tool)
+  - Tailwind CSS
+  - React Router v6
+  - TanStack Query (React Query)
+  - Axios
+
+
+API Endpoints
+=============
+
+GET  /                          Health check
+GET  /api/status                Get booking statistics
+GET  /api/bookings              Get all bookings
+GET  /api/bookings/pending      Get pending HCN bookings
+GET  /api/bookings/critical     Get critical bookings
+GET  /api/config                Get system configuration
+POST /api/process               Start email processing workflow
+
+
+Running the Application
+=======================
+
+Quick Start:
+  ./start.sh
+
+Or manually:
+
+  Terminal 1 (Backend):
+    cd /Users/amarjeet/Downloads/hcn
+    source .venv/bin/activate
+    python backend_api.py
+
+  Terminal 2 (Frontend):
+    cd /Users/amarjeet/Downloads/hcn/frontend
+    npm run dev
+
+Access:
+  Frontend:  http://localhost:3000
+  Backend:   http://localhost:8000
+  API Docs:  http://localhost:8000/docs
+
+
+File Count Summary
+==================
+
+Backend:         3 Python files
+Frontend:        16 TypeScript/TSX files
+Configuration:   11 config files
+Documentation:   5 markdown files
+Total:          ~35 files (excluding node_modules, dist, cache)
+
+
+Dependencies
+============
+
+Python (requirements.txt):
+  - fastapi
+  - uvicorn
+  - pandas
+  - openpyxl
+  - openai
+  - python-dotenv
+  - langchain
+  - scrapegraphai
+  - streamlit
+  - plotly
+
+Node.js (package.json):
+  - react
+  - react-dom
+  - react-router-dom
+  - @tanstack/react-query
+  - axios
+  - typescript
+  - vite
+  - tailwindcss
+  - lucide-react
+  - react-hot-toast
+  - date-fns
+
+
+Production Build
+================
+
+Frontend:
+  cd frontend
+  npm run build
+  # Output: frontend/dist/
+
+Backend:
+  # Already production-ready
+  python backend_api.py
+
+
+Contact & Support
+=================
+
+Company: Within Earth Travel Pvt. Ltd.
+Version: 1.0.0
+Created: December 2024
